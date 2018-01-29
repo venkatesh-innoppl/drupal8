@@ -1,0 +1,17 @@
+register.form:
+ path: '/register'
+ defaults:
+   _title: 'Register form'
+   _form: '\Drupal\custom\Form\Register'
+ requirements:
+   _permission: 'access content'
+
+table_data.custom:
+  path: 'register/data'
+  defaults:
+    _title: 'Registered Data'
+    _controller: '\Drupal\custom\Controller\CustomController::description'
+  requirements:
+    _permission: 'access content'
+  options:
+    no_cache: 'TRUE'   

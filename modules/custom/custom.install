@@ -1,0 +1,38 @@
+<?php
+function custom_schema() {
+  $schema['custom'] = array(
+    // Example (partial) specification for table "node".
+    'description' => 'The base table for nodes.',
+    'fields' => array(
+      'name' => [
+        'description' => 'user name',
+        'type' => 'varchar_ascii',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'email' => [
+        'description' => 'user email',
+        'type' => 'varchar_ascii',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'gender' => [
+        'description' => 'user gender',
+        'type' => 'varchar_ascii',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+      ],    
+      'country' => [
+        'description' => 'user country',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],        
+    ),
+  );
+  return $schema;
+}
