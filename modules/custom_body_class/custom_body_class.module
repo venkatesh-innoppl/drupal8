@@ -1,0 +1,72 @@
+<?php
+
+/**
+ * @file
+ * This is the file description for Custom body class module.
+ *
+ * This file adds a fieldset to the node form and adds class/es to the
+ * node page in body tag.
+ */
+
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function custom_body_class_form_node_form_alter(&$form, &$form_state, $form_id) {
+  $form['body_class_group'] = [
+    '#type' => 'details',
+    '#title' => t('Custom Body Class Settings'),
+    '#description' => t('Assign CSS class/es to the body.'),
+    '#group' => 'advanced',
+    '#access' => TRUE,
+    '#attributes' => ['class' => ['body-class-form']],
+  ];
+
+  $form['body_class']['#group'] = 'body_class_group';
+  $form['specific_node_class']['#group'] = 'body_class_group';
+}
+
+/**
+ * Implements hook_entity_base_field_info().
+ */
+function custom_body_class_entity_base_field_info(EntityTypeInterface $entity_type) {
+  if ($entity_type->id() === 'node') {
+    $fields['body_class'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Add CSS class(es)'))
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => 36,
+      ])
+      ->setDisplayConfigurable('form', TRUE);
+
+    $fields['specific_node_class'] = BaseFieldDefinition::create('boolean')
+      ->setLabel(t('If checked, add name of node type as class to body tag.'))
+      ->setDisplayOptions('form', [
+        'type' => 'boolean_checkbox',
+        'weight' => 37,
+      ])
+      ->setDisplayConfigurable('form', TRUE);
+    return $fields;
+  }
+}
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function custom_body_class_preprocess_html(&$variables) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+
+  if ($node) {
+    $custom_body_class = $node->get('body_class')->getValue();
+    $specific_node_class = $node->get('specific_node_class')[0]->getValue();
+    if (!empty($custom_body_class) && isset($custom_body_class[0]) && isset($custom_body_class[0]['value'])) {
+      $variables['attributes']['class'][] = $custom_body_class[0]['value'];
+    }
+    if (!empty($specific_node_class) && ($specific_node_class['value'] == 1)) {
+      $variables['attributes']['class'][] = $node->gettype();
+    }
+  }
+}
