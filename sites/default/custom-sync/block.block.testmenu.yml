@@ -1,0 +1,24 @@
+uuid: 0394f7bc-ec7e-46a5-bb97-09f369f82768
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.test-menu
+  module:
+    - system
+  theme:
+    - bartik
+id: testmenu
+theme: bartik
+region: sidebar_second
+weight: 0
+provider: null
+plugin: 'system_menu_block:test-menu'
+settings:
+  id: 'system_menu_block:test-menu'
+  label: 'Test menu'
+  provider: system
+  label_display: visible
+  level: 1
+  depth: 0
+visibility: {  }

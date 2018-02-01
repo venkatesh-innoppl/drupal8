@@ -1,0 +1,18 @@
+uuid: 561f1a3f-1950-4002-9a9b-9bf9bed85f1c
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: j5zLMOdJBqC0bMvSdth5UebkprJB8g_2FXHqhfpJzow
+id: anonymous
+label: 'Anonymous user'
+weight: 0
+is_admin: false
+permissions:
+  - 'access comments'
+  - 'access content'
+  - 'access site-wide contact form'
+  - 'generate lorem ipsum'
+  - 'post comments'
+  - 'search content'
+  - 'use text format restricted_html'

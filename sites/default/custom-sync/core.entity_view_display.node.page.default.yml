@@ -1,0 +1,53 @@
+uuid: c7451256-1afd-407c-8785-45a66de017ec
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.page.body
+    - field.field.node.page.field_content_comments
+    - field.field.node.page.field_test_image
+    - image.style.thumbnail
+    - node.type.page
+  module:
+    - comment
+    - image
+    - text
+    - user
+_core:
+  default_config_hash: g1S3_GLaxq4l3I9RIca5Mlz02MxI2KmOquZpHw59akM
+id: node.page.default
+targetEntityType: node
+bundle: page
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_content_comments:
+    weight: 103
+    label: above
+    settings:
+      view_mode: default
+      pager_id: 0
+    third_party_settings: {  }
+    type: comment_default
+    region: content
+  field_test_image:
+    weight: 102
+    label: visually_hidden
+    settings:
+      image_style: thumbnail
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  links:
+    weight: 101
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }
